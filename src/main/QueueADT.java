@@ -10,26 +10,12 @@ public class QueueADT
 
 	void enqueue(int value)
 	{
-		if(!isFull())
-		{
-			rear++;
-			queue[rear] = value;
-		}
-		else
-		{
-			System.out.println("Overflow");
-		}
+
 	}
 
 	int dequeue()
 	{
 		int deleted = 0;
-
-		if(!isEmpty())
-		{
-			front++;
-
-		}
 
 
 		return deleted;
@@ -45,7 +31,7 @@ public class QueueADT
 	int size()
 	{
 		int size = 0;
-
+		size = rear + 1;
 		return size;
 	}
 
