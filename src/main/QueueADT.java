@@ -3,19 +3,45 @@ package main;
 public class QueueADT
 {
 
-	int[] queue = new int[10];
+	int[] queue = new int[5];
 	int front = -1;
 	int rear = -1;
 	int size = queue.length;
 
 	void enqueue(int value)
 	{
-
+		if(!isFull())
+		{
+			front=0;
+			rear++;
+			queue[rear] = value;
+		}
+		else
+		{
+			System.out.println("Overflow");
+		}
 	}
 
 	int dequeue()
 	{
 		int deleted = 0;
+		if(!isEmpty())
+		{
+			int i;
+			deleted = queue[0];
+			for (i = 0; i <queue.length-1 ; i++) {
+				queue[i]=queue[i+1];
+			}
+			queue[i]=0;
+			rear--;
+			if(queue[0]==0){
+				rear=-1;
+				front=-1;
+			}
+		}
+		else{
+			System.out.println("UnderFlow!!!");
+		}
 
 
 		return deleted;
@@ -23,8 +49,7 @@ public class QueueADT
 
 	int peek()
 	{
-		int item = 0;
-
+		int item = queue[rear];
 		return item;
 	}
 
@@ -37,12 +62,28 @@ public class QueueADT
 
 	boolean isEmpty()
 	{
-		return false;
+		if((front == -1) && (rear == -1)) {
+			return(true);
+		}
+		else{
+			return(false);
+		}
 	}
 
 	boolean isFull()
 	{
-		return false;
+		if(rear == queue.length-1) {
+			return(true);
+		}
+		else{
+			return(false);
+		}
+	}
+
+	void show(){
+		for (int i = 0; i <queue.length ; i++) {
+			System.out.print(queue[i]+" ");
+		}
 	}
 
 }
